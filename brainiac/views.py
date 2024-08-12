@@ -1,0 +1,19 @@
+from flask import Blueprint, render_template
+
+views = Blueprint('views',__name__)
+
+@views.route('/')
+def home():
+    return render_template('index.html')
+
+@views.route('/Tools')
+def tools():
+    return render_template('aitools.html')
+
+@views.route('/About')
+def about():
+    return render_template('aboutus.html')
+
+@views.route('/Tool2')
+def tool2():
+    return render_template('tool2.html')

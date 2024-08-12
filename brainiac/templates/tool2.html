@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainiac - TOOL 2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{{ url_for('static', filename='b2.png') }}" alt="Logo" class="logo-image">
+            <div class="logo">BRAINIAC</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('views.home') }}">Home</a></li>
+                <li><a href="{{ url_for('views.tools') }}">AI Tools</a></li>
+                <li><a href="{{ url_for('views.about') }}">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="hero-section">
+            <div class="text-content">
+                <h1>BRAINIAC's Summary Tool</h1>
+                <p id="typewriter-text2">Tired of spending hours reading lengthy textbooks and research papers?
+                    Introducing Brainiac's Document Summarizer, your AI-powered study companion that saves you time and effort.
+                    Save time, improve comprehension & 
+                    enhance your study efficiency!</p> 
+                <br>
+                <br>
+                <form action="">
+                    <label for="myfile" class="file-upload-button">Add File</label>
+                    <input type="file" id="myfile" name="myfile" >
+                    <input type="submit" value="Upload" class="upload">
+                </form>
+            </div>
+            <img src="{{ url_for('static', filename='brainysum.png') }}" alt="Hero Image" class="hero-image">
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Brainiac. All rights reserved.</p>
+    </footer>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+</html>
