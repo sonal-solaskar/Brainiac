@@ -17,3 +17,7 @@ def about():
 @views.route('/Tool2')
 def tool2():
     return render_template('tool2.html')
+
+@views.route('/prompt2latex')
+def prompt2latex():
+    return render_template('prompt2latex.html')
