@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRANIAC - Prompt To LaTeX Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/prompt2latex.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{{ url_for('static', filename='b2.png') }}" alt="Logo" class="logo-image">
+            <div class="logo">BRAINIAC</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('views.home') }}">Home</a></li>
+                <li><a href="{{ url_for('views.tools') }}">AI Tools</a></li>
+                <li><a href="{{ url_for('views.about')}}">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="hero-section">
+            <div class="text-content">
+                <h1>BRANIAC’s Prompt to LaTeX Generator</h1>
+                <p id="typewriter-text2">Just type a query in natural language and get back LaTeX, 
+                    you can verify it by looking at the rendered LaTeX!</p> 
+                <br>
+                <div class="input-container">
+                    <input type="text" placeholder="Input Text">
+                    <button>Generate</button>
+                </div>
+                <div class="output-container">
+                    <input type="text" placeholder="LaTeX" readonly><br><br>
+                    <input type="text" class="visualization" placeholder="Visualization" readonly>
+                </div>
+                
+
+            </div>
+            <img src="{{ url_for('static', filename='brainysum.png') }}" alt="Hero Image" class="hero-image">
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Brainiac. All rights reserved.</p>
+    </footer>
+</body>
+</html>
