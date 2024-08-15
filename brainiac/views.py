@@ -53,7 +53,7 @@ def tool2():
 
 @views.route("/Prompt2Latex")
 def prompt2latex():
-    return render_template("promptToLaTeX.html")
+    return render_template("prompt2latex.html")
 
 @views.route("/generate_latex", methods=["POST"])
 def generate_latex():
