@@ -1,78 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BRAINIAC - Prompt To LaTeX Generator</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/prompt2latex.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/prompt2latex.css') }}"
+    />
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-</head>
-<body>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+
+  <body>
     <header>
-        <div class="header-left">
-            <img src="{{ url_for('static', filename='b2.png') }}" alt="Logo" class="logo-image">
-            <div class="logo">BRAINIAC</div>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('views.home') }}">Home</a></li>
-                <li><a href="{{ url_for('views.tools') }}">AI Tools</a></li>
-                <li><a href="{{ url_for('views.about')}}">About Us</a></li>
-            </ul>
-        </nav>
+      <div class="header-left">
+        <img
+          src="{{ url_for('static', filename='b2.png') }}"
+          alt="Logo"
+          class="logo-image"
+        />
+        <div class="logo">BRAINIAC</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('views.home') }}">Home</a></li>
+          <li><a href="{{ url_for('views.tools') }}">AI Tools</a></li>
+          <li><a href="{{ url_for('views.about')}}">About Us</a></li>
+        </ul>
+      </nav>
     </header>
+
     <main>
-        <div class="hero-section">
-            <div class="text-content">
-                <h1>BRAINIAC’s Prompt to LaTeX Generator</h1>
-                <p id="typewriter-text2">Just type a query in natural language and get back LaTeX, 
-                    you can verify it by looking at the rendered LaTeX!</p> 
-                <br>
-                <form id="latex-form">
-                    <div class="input-container">
-                        <input type="text" id="prompt" placeholder="Input Text" required>
-                        <button type="submit">Generate</button>
-                    </div>
-                </form>
-                <div class="output-container">
-                    <input type="text" id="latex-output" placeholder="LaTeX" readonly><br><br>
-                    <div id="markdown-preview" class="visualization"></div>
-                </div>
+      <div class="hero-section">
+        <div class="text-content">
+          <h1>BRAINIAC’s Prompt to LaTeX Generator</h1>
+          <p id="typewriter-text2">
+            Just type a query in natural language and get back LaTeX, you can
+            verify it by looking at the rendered LaTeX!
+          </p>
+          <br />
+          <form id="latex-form">
+            <div class="input-container">
+              <input
+                type="text"
+                id="prompt"
+                placeholder="Input Text"
+                required
+              />
+              <button type="submit">Generate</button>
             </div>
-            <img src="{{ url_for('static', filename='brainysum.png') }}" alt="Hero Image" class="hero-image">
+          </form>
+          <div class="output-container">
+            <div class="latex-output-wrapper">
+              <input
+                type="text"
+                id="latex-output"
+                placeholder="LaTeX"
+                readonly
+              />
+              <button id="copy-button">Copy</button>
+            </div>
+            <br /><br />
+            <div id="markdown-preview" class="visualization"></div>
+          </div>
         </div>
+        <img
+          src="{{ url_for('static', filename='brainysum.png') }}"
+          alt="Hero Image"
+          class="hero-image"
+        />
+      </div>
     </main>
+
     <footer>
-        <p>&copy; 2024 Brainiac. All rights reserved.</p>
+      <p>&copy; 2024 Brainiac. All rights reserved.</p>
     </footer>
-</body>
+  </body>
 
-<script>
-document.getElementById('latex-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const query = document.getElementById('prompt').value;
-    
-    fetch('/generate_latex', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ query: query })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.latex)
-        if (data.latex) {
-            document.getElementById('latex-output').value = data.latex;
-            document.getElementById('markdown-preview').innerHTML = "$$" + data.latex + "$$";
-            MathJax.typeset(); // Trigger MathJax to render the LaTeX
-        } else {
-            alert('Error: ' + data.error);
-        }
-    });
-});
-</script>
+  <script>
+    document
+      .getElementById("latex-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        const query = document.getElementById("prompt").value;
+
+        fetch("/generate_latex", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query: query }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.latex);
+            if (data.latex) {
+              document.getElementById("latex-output").value = data.latex;
+              document.getElementById("markdown-preview").innerHTML =
+                "$$" + data.latex + "$$";
+              MathJax.typeset(); // Trigger MathJax to render the LaTeX
+            } else {
+              alert("Error: " + data.error);
+            }
+          });
+      });
+
+    document
+      .getElementById("copy-button")
+      .addEventListener("click", function () {
+        const latexOutput = document.getElementById("latex-output");
+        latexOutput.select();
+        document.execCommand("copy");
+        alert("LaTeX copied to clipboard!");
+      });
+  </script>
 </html>
-
