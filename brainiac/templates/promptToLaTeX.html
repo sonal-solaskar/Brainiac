@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainiac - TOOL 2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{{ url_for('static', filename='b2.png') }}" alt="Logo" class="logo-image">
+            <div class="logo">BRAINIAC</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('views.home') }}">Home</a></li>
+                <li><a href="{{ url_for('views.tools') }}">AI Tools</a></li>
+                <li><a href="{{ url_for('views.about') }}">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="tool-section">
+            <h1>BRAINIAC's LaTeX Generator Tool</h1>
+            <p>Enter your text prompt below, and the LaTeX code will be generated and rendered.</p>
+            <form id="latex-form">
+                <div class="form-group">
+                    <label for="text-prompt">Text Prompt:</label>
+                    <textarea id="text-prompt" class="input-box" rows="4" placeholder="Enter your text prompt here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="latex-output">Generated LaTeX Code:</label>
+                    <textarea id="latex-output" class="output-box" rows="4" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="latex-preview">LaTeX Preview:</label>
+                    <div id="latex-preview" class="markdown-preview"></div>
+                </div>
+                <button type="button" class="generate-button" onclick="generateLatex()">Generate LaTeX</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Brainiac. All rights reserved.</p>
+    </footer>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+    <script>
+        function generateLatex() {
+            const prompt = document.getElementById('text-prompt').value;
+            const output = document.getElementById('latex-output');
+            const preview = document.getElementById('latex-preview');
+
+            // Simulated LaTeX generation (replace with actual logic)
+            const latexCode = `\\textbf{${prompt}}`;
+            output.value = latexCode;
+
+            // Render LaTeX in the preview area
+            preview.innerHTML = latexCode;
+        }
+    </script>
+</body>
+</html>
+
