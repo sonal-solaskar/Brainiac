@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brainiac - Home</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/summary.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <img
+          src="{{ url_for('static', filename='b2.png') }}"
+          alt="Logo"
+          class="logo-image"
+        />
+        <div class="logo">BRAINIAC</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('views.home') }}">Home</a></li>
+          <li><a href="{{ url_for('views.tools') }}">AI Tools</a></li>
+          <li><a href="{{ url_for('views.about')}}">About Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="summary-tool">
+        <h1>Brainiac's Summary Tool</h1>
+        <p class="description">
+          Upload your PDF to get a detailed summary with key insights. Let
+          Brainiac analyze your content in seconds.
+        </p>
+        <!-- Form for PDF upload -->
+        <form id="pdf-upload-form" enctype="multipart/form-data">
+          <div class="input-container">
+            <input
+              type="file"
+              id="pdf-upload"
+              name="pdf"
+              accept="application/pdf"
+            />
+            <button type="submit">Summarize PDF</button>
+          </div>
+        </form>
+        <div class="output-box" style="display: none">
+          <p></p>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; 2024 Brainiac. All rights reserved.</p>
+    </footer>
+    <script>
+      document
+        .getElementById("pdf-upload-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const pdfFile = document.getElementById("pdf-upload").files[0];
+          if (!pdfFile) {
+            alert("Please upload a PDF file.");
+            return;
+          }
+
+          const formData = new FormData();
+          formData.append("pdf", pdfFile);
+
+          fetch("/summarize_pdf", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.error) {
+                alert("Error: " + data.error);
+              } else {
+                document.querySelector(".output-box p").textContent =
+                  data.summary;
+                document.querySelector(".summary-tool h1").style.display =
+                  "none";
+                document.querySelector(".description").style.display = "none";
+                document.getElementById("pdf-upload-form").style.display =
+                  "none";
+                document.querySelector(".output-box").style.display = "block";
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("An error occurred while processing the PDF.");
+            });
+        });
+    </script>
+  </body>
+</html>
