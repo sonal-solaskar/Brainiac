@@ -114,11 +114,9 @@ def summarize_pdf(pdf_path):
                 "content": prompt,
             }
         ],
-        response_model=SummaryOutput,
+        response_model=None,
     )
-    print(resp)
-
-    return resp.summary
+    return resp.choices[0].message.content
 
 
 @views.route("/generate_latex", methods=["POST"])
