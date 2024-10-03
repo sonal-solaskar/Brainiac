@@ -29,28 +29,18 @@
                     <div class="tools-container">
                         <div class="tools">
                             <div class="tool-card">
-                                <img src="{{ url_for('static', filename='sumbg.jpg') }}" alt="Summarization" class="tool-image">
-                                <span class="tool-name"><a href="{{ url_for('views.tool2')}}">Summarization</a></span>
+                                <a href="{{ url_for('views.tool2')}}"><img src="{{ url_for('static', filename='Summary.png') }}" alt="Summarization" class="tool-image"></a>
                             </div>
                             <div class="tool-card">
-                                <img src="{{ url_for('static', filename='quizwbg.jpg') }}" alt="Quiz Generator" class="tool-image">
-                                <span class="tool-name"><a href="{{ url_for('views.tool2')}}">Quiz Generator</a></span>
+                                <a href="{{ url_for('views.tool2')}}"><img src="{{ url_for('static', filename='quiz.png') }}" alt="Quiz Generator" class="tool-image">
+                               </a>
                             </div>
                             <div class="tool-card">
-                                <img src="{{ url_for('static', filename='b2wbg.jpg') }}" alt="Chat with Doc" class="tool-image">
-                                <span class="tool-name"><a href="{{ url_for('views.tool2')}}">Chat with Doc</a></span>
+                                <a href="{{ url_for('views.prompt2latex')}}"><img src="{{ url_for('static', filename='Prompt2Latex.png') }}" alt="Prompt to LaTeX" class="tool-image">
+                                </a>
                             </div>
                             <div class="tool-card">
-                                <img src="{{ url_for('static', filename='b2wbg.jpg') }}" alt="Prompt to LaTeX" class="tool-image">
-                                <span class="tool-name"><a href="{{ url_for('views.prompt2latex')}}">Prompt to LaTeX</a></span>
-                            </div>
-                            <div class="tool-card">
-                                <img src="{{ url_for('static', filename='b2wbg.jpg') }}" alt="Handwritten Equations to LaTeX" class="tool-image">
-                                <span class="tool-name"><a href="{{ url_for('views.tool2')}}">Handwritten Equations to LaTeX</a></span>
-                            </div>
-                            <div class="tool-card">
-                                <img src="{{ url_for('static', filename='b2wbg.jpg') }}" alt="Tool 6" class="tool-image">
-                                <span class="tool-name"><a href="{{ url_for('views.tool2')}}">Tool 6</a></span>
+                                <a href="{{ url_for('views.tool2')}}"><img src="{{ url_for('static', filename='he.png') }}" alt="Handwritten Equations to LaTeX" class="tool-image"></a>
                             </div>
                         </div>
                     </div>

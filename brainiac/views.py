@@ -85,21 +85,24 @@ def summarize_pdf_route():
     if not pdf_file.filename.endswith(".pdf"):
         return jsonify({"error": "Invalid file format. Please upload a PDF file."}), 400
 
-    pdf_path = os.path.join("/tmp", pdf_file.filename)
+    pdf_path = 'tmp'
     pdf_file.save(pdf_path)
 
     try:
+        print(pdf_path)
         summary = summarize_pdf(pdf_path)
         return jsonify({"summary": summary})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     finally:
+        print(pdf_file)
         if os.path.exists(pdf_path):
             os.remove(pdf_path)
 
 
 def summarize_pdf(pdf_path):
-    reader = PdfReader(pdf_path)
+    print(os.path.realpath(pdf_path))
+    reader = PdfReader(os.path.realpath(pdf_path))
 
     full_text = ""
     for page in reader.pages:

@@ -26,22 +26,58 @@
                 <h1>BRAINIAC's Summary Tool</h1>
                 <p id="typewriter-text2">Tired of spending hours reading lengthy textbooks and research papers?
                     Introducing Brainiac's Document Summarizer, your AI-powered study companion that saves you time and effort.
-                    Save time, improve comprehension & 
-                    enhance your study efficiency!</p> 
-                <br>
-                <br>
-                <form action="">
-                    <label for="myfile" class="file-upload-button">Add File</label>
-                    <input type="file" id="myfile" name="myfile" >
-                    <input type="submit" value="Upload" class="upload">
+                    Save time, improve comprehension & enhance your study efficiency!</p>
+                <br><br>
+                <form id="pdf-upload-form" enctype="multipart/form-data">
+                    <label for="pdf-upload" class="file-upload-button">Add File</label>
+                    <input type="file" id="pdf-upload" name="pdf" accept="application/pdf" style="display: none;">
+                    <input type="submit" value="Summarize" class="upload">
                 </form>
             </div>
             <img src="{{ url_for('static', filename='brainysum.png') }}" alt="Hero Image" class="hero-image">
+        </div>
+        <div class="output-box" style="display: none;">
+            <h1>Summary</h1>
+            <p></p>
         </div>
     </main>
     <footer>
         <p>&copy; 2024 Brainiac. All rights reserved.</p>
     </footer>
-    <script src="{{url_for('static', filename='script.js')}}"></script>
+    <script>
+        document
+            .getElementById("pdf-upload-form")
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const pdfFile = document.getElementById("pdf-upload").files[0];
+                if (!pdfFile) {
+                    alert("Please upload a PDF file.");
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append("pdf", pdfFile);
+
+                fetch("/summarize_pdf", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.error) {
+                        alert("Error: " + data.error);
+                    } else {
+                        document.querySelector(".output-box p").textContent = data.summary;
+                        document.querySelector(".hero-section").style.display = "none";
+                        document.querySelector(".output-box").style.display = "block";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("An error occurred while processing the PDF.");
+                });
+            });
+    </script>
 </body>
 </html>

@@ -161,3 +161,32 @@ footer {
     text-align: center;
     padding: 1em 0;
 }
+
+
+.output-box {
+    background-color: #edf2f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    height: 400px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+  }
+  
+  .output-box p {
+    color: black;
+    font-size: 1.2em;
+    margin: 0;
+    padding: 10px;
+    white-space: pre-wrap;
+  }
+  
+  .output-box::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+  
