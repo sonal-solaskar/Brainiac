@@ -69,6 +69,13 @@ def tool2():
 def prompt2latex():
     return render_template("prompt2latex.html")
 
+@views.route("/Handwritten2Latex")
+def handwrtn2latex():
+    return render_template("handwrtn2latex.html")
+
+@views.route("/Digitization")
+def digitalize():
+    return render_template("digitization.html")
 
 @views.route("/Summary")
 def summary():

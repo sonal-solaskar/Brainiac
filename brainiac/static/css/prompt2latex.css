@@ -149,3 +149,27 @@ footer {
     text-align: center;
     padding: 1em 0;
 }
+
+input[type="file"] {
+    font-size: 1em;
+    color: black;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: solid 2px white;
+    cursor: pointer;
+    background-color: white;
+  }
+  
+  input[type="file"]::-webkit-file-upload-button {
+    padding: 10px;
+    background-color: #43bcdc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #05183c;
+  }

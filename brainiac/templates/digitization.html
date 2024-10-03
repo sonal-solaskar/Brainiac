@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainiac - TOOL 2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{{ url_for('static', filename='b2.png') }}" alt="Logo" class="logo-image">
+            <div class="logo">BRAINIAC</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('views.home') }}">Home</a></li>
+                <li><a href="{{ url_for('views.tools') }}">AI Tools</a></li>
+                <li><a href="{{ url_for('views.about') }}">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="hero-section">
+            <div class="text-content">
+                <h1>Brainiac's Digitization Tool</h1>
+                <p id="typewriter-text2">Upload your PDF to get a digitized version. Let
+                    Brainiac analyze your content in seconds.</p>
+                <br><br>
+                <form id="pdf-upload-form" enctype="multipart/form-data">
+                    <label for="pdf-upload" class="file-upload-button">Add File</label>
+                    <input type="file" id="pdf-upload" name="pdf" accept="application/pdf" style="display: none;">
+                    <input type="submit" value="Digitize" class="upload">
+                </form>
+            </div>
+            <img src="{{ url_for('static', filename='brainysum.png') }}" alt="Hero Image" class="hero-image">
+        </div>
+        <div class="output-box" style="display: none;">
+            <h1>Summary</h1>
+            <p></p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Brainiac. All rights reserved.</p>
+    </footer>
+</body>
+</html>
